@@ -17,7 +17,8 @@ all_keys = {
     "back light": back_light,
     "esc": [1],
     "f1": [2],
-    "f2": [3]
+    "f2": [3],
+    "fn": [82]
 }
 
 #Loop through all_keys to do the calculation

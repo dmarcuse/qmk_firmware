@@ -27,6 +27,7 @@ enum layers {
     _BL = 0,
     _FN,
     _NA, // nier: automata
+    _UC, // unicode
 };
 
 keymap_config_t keymap_config;
@@ -38,7 +39,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC, KC_RBRC, KC_BSLS,   KC_DEL,  KC_END,  KC_PGDN, \
         KC_CAPS, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, KC_ENT, \
         KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,                              KC_UP, \
-        KC_LCTL, KC_LGUI, KC_LALT,                   KC_SPC,                             KC_RALT, MO(_FN), MO(_FN), KC_RCTL,            KC_LEFT, KC_DOWN, KC_RGHT \
+        KC_LCTL, KC_LGUI, KC_LALT,                   KC_SPC,                             KC_RALT, OSL(_UC),MO(_FN), KC_RCTL,            KC_LEFT, KC_DOWN, KC_RGHT \
     ),
     [_FN] = LAYOUT(
         TO(_BL), TG(_NA), XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,            KC_MUTE, _______, _______, \
@@ -55,6 +56,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         U_SHLK,  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,                              _______, \
         _______, _______, _______,                   _______,                            _______, _______, _______, _______,            _______, _______, _______ \
+    ),
+    [_UC] = LAYOUT(
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,            _______, _______, _______, \
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, UC(L'—'),_______, _______,   _______, _______, _______, \
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,   _______, _______, _______, \
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,                              _______, \
+        _______, _______, _______,                   _______,                            _______, XXXXXXX, _______, _______,            _______, _______, _______ \
     ),
     /*
     [X] = LAYOUT(
@@ -229,6 +238,13 @@ led_instruction_t led_instructions[] = {
     {
         .flags = LED_FLAG_MATCH_ID | LED_FLAG_MATCH_LAYER | LED_FLAG_USE_RGB,
         .id0 = 2, .id1 = 0, .id2 = 0, .id3 = 0, .layer = _NA,
+        .r = 255, .g = 255, .b = 255
+    },
+
+    // Light compose key when unicode layer active
+    {
+        .flags = LED_FLAG_MATCH_ID | LED_FLAG_MATCH_LAYER | LED_FLAG_USE_RGB,
+        .id0 = 0, .id1 = 0, .id2 = 131072, .id3 = 0, .layer = _UC,
         .r = 255, .g = 255, .b = 255
     },
 
