@@ -34,3 +34,8 @@ AUTO_SHIFT_ENABLE = no      # Auto Shift
 
 # Custom RGB matrix handling
 RGB_MATRIX_ENABLE = custom
+
+# Debounce mode
+DEBOUNCE_TYPE = sym_eager_pk
+# Debounce delay (ms)
+# DEBOUNCE = 5
